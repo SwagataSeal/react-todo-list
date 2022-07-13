@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class TodoInput extends Component {
   render() {
-    const { item, handleChange, handleEdit, handleSubmit } = this.props;
+    const { item, handleChange, handleSubmit, editItem } = this.props;
     return (
       <div className="card card-body my-3">
         <form onSubmit={handleSubmit}>
@@ -12,12 +12,25 @@ export default class TodoInput extends Component {
                 <i className="fas fa-book"></i>
               </div>
             </div>
-            <input type="text" className="form-control text-capitalize" placeholder="add to do list" value={item} onChange={handleChange} />
+            <input
+              type="text"
+              className="form-control text-capitalize"
+              placeholder="add to do list"
+              value={item}
+              onChange={handleChange}
+            />
           </div>
           <div className="d-grid gap-2">
-            <button type="submit" className='="btn btn-primary align-center btn-lg mt-3 text-uppercase'>
-              {/* {' '} */}
-              Add Item
+            <button
+              type="submit"
+              disabled={item ? false : true}
+              className={
+                editItem
+                  ? 'btn btn-success align-center btn-lg mt-3 text-uppercase'
+                  : 'btn btn-primary align-center btn-lg mt-3 text-uppercase'
+              }
+            >
+              {editItem ? 'Edit Item' : 'Add Item'}
             </button>
           </div>
         </form>

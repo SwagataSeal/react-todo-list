@@ -33,13 +33,26 @@ export default class App extends Component {
     });
   };
   handleClear = () => {
-    console.log('handle Clar');
+    this.setState({
+      items: [],
+    });
   };
   handleEdit = (id) => {
-    console.log('handle Delete  $(id)');
+    const filteredItem = this.state.items.filter((item) => item.id !== id);
+    const selectedItem = this.state.items.find((item) => item.id === id);
+    console.log(selectedItem);
+    this.setState({
+      items: filteredItem,
+      item: selectedItem.title,
+      id: id,
+      editItem: true,
+    });
   };
   handleDelete = (id) => {
-    console.log('handle Delete  $(id)');
+    const filteredItem = this.state.items.filter((item) => item.id !== id);
+    this.setState({
+      items: filteredItem,
+    });
   };
 
   render() {
